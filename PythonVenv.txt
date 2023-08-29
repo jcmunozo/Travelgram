@@ -1,0 +1,52 @@
+Cursos vistos:
+	https://platzi.com/cursos/django-2018/
+	https://platzi.com/cursos/django-avanzado/
+	https://platzi.com/clases/24-comunidad-platzi/4027-como-llevar-django-a-produccion/
+
+//	Acceder		//
+
+Instalar python previamente, preferiblemente python 3
+
+1. python -m venv .env (Crea una carpeta donde se guardaran
+			todas las configuraciones que se hagan
+			en nuestro proyecto).
+			comandos para ver la carpeta:
+			1. ls -al
+			2. ls -al .env
+
+2. .\.env\Scripts\activate (Con este comando se activa el 
+			    entorno virtual por ende lo que se 
+			    instale en este lugar solo funcionara
+			    aqui)
+			    Instalacion de Django:
+			    pip install django -U
+
+
+3. deactivate (Para desactivar el entorno virutal)
+
+4. pip freeze (Muestra las librerias que se estan usando)
+
+5. django-admin (permite correr otros subcomandos)
+
+6. django-admin startproject platzigram . (crea un proyecto)
+
+7. code . (Abre en VS-code el folder)
+
+8. python manage.py (Muestra un resultado parecido a django-admin)
+
+9. python manage.py runserver (servidor de django).
+
+ 
+
+Para crear apps dentro de django usamos:
+
+1. python manage.py startapp nombredeapp
+
+migraciones:
+
+1. python3 manage.py makemigrations
+2. python3 manage.py migrate
+
+superuser:
+
+python3 manage.py createsuperuser

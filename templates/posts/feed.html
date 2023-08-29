@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title> Travelgram </title>
+{% endblock %}
+
+{% block container %}
+<div class="contaier">
+    <div class="row">
+        {% for post in posts %}
+            {% include "posts/post_card.html" %}
+        {% endfor %}
+    </div>
+</div>
+
+{% include "pagination.html" %}
+{% endblock %}
