@@ -1,7 +1,19 @@
-.env/*
-*.jpg
-*.png
-__pycache__/
+# Django
 *.py[cod]
 *$py.class
-Icon
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+
+# Enviroments
+env/*
+venv
+.env
+.venv
+myenv
+
+# images
+*.png
+*.jpg
