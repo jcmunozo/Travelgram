@@ -4,7 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views as auth_views
 from django.views.generic import DetailView, FormView, UpdateView
 from django.urls import reverse, reverse_lazy
-from django.shortcuts import render
 
 #forms
 from users.forms import SignupForm
@@ -64,11 +63,4 @@ class LoginView(auth_views.LoginView):
 
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     """Logout view""" 
-    template_name = 'users/logout.html'  # Página de confirmación
     next_page = reverse_lazy('users:login')
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.method == 'GET':
-            return render(request, self.template_name)
-        elif request.method == 'POST':
-            return super().dispatch(request, *args, **kwargs)
