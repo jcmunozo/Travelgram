@@ -20,6 +20,8 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    likes = models.PositiveIntegerField(default=0)
+
     def __str__(self):
         return '{} by @{}'.format(self.title, self.user.username)
 

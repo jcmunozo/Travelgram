@@ -1,8 +1,7 @@
 """post urls"""
 
 #django
-from unicodedata import name
-from django.urls import URLPattern, path
+from django.urls import path
 
 #models
 from posts import views
