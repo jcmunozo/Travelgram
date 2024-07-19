@@ -1,11 +1,10 @@
+"""Post Models"""
 #Django
 from django.db import models
 from django.contrib.auth.models import User
 
-#models
+#users
 from users.models import Profile
-
-# Create your models here.
 
 class Post(models.Model):
     """Post model"""

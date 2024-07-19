@@ -2,8 +2,8 @@
 #django
 from django.urls import path
 
-#models
-from users import views
+#users
+from . import views
 
 urlpatterns = [
 

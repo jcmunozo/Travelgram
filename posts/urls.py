@@ -1,10 +1,9 @@
-"""post urls"""
-
+"""Post Urls"""
 #django
 from django.urls import path
 
-#models
-from posts import views
+#posts
+from . import views
 
 urlpatterns = [
     path(

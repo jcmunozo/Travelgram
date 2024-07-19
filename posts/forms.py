@@ -1,10 +1,10 @@
-"""Post forms"""
+"""Post Forms"""
 
 #django
 from django import forms
 
-#model
-from posts.models import Post
+#posts
+from .models import Post
 
 class PostForm(forms.ModelForm):
     """Post model form"""

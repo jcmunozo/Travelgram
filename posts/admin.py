@@ -1,10 +1,10 @@
+"""Post Admin"""
 #django
 from django.contrib import admin
 
-#model
-from posts.models import Post
+#posts
+from .models import Post
 
-# Register your models here.
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     """Post admin"""

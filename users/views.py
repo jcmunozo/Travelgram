@@ -4,15 +4,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views as auth_views
 from django.views.generic import DetailView, FormView, UpdateView
 from django.urls import reverse, reverse_lazy
-
-#forms
-from users.forms import SignupForm
-
-#model
 from django.contrib.auth.models import User
+
+#users
+from .forms import SignupForm
+from .models import Profile
+
+#posts
 from posts.models import Post
-from users.models import Profile
-# Create your views here.
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     template_name = 'users/detail.html'

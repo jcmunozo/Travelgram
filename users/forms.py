@@ -1,11 +1,11 @@
 """User Forms"""
 #Django
 from django import forms
+from django.contrib.auth.models import User
 
 #models
-from django.contrib.auth.models import User
-from users.models import Profile
-from users.models import User
+from .models import Profile
+from .models import User
 
 class SignupForm(forms.Form):
     """Signup form"""

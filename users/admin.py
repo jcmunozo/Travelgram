@@ -1,11 +1,11 @@
-"""User admin classess"""
+"""User Admin"""
 #django
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin # this import help us to create profile in users in dashboard
-#models
-from users.models import Profile
 from django.contrib.auth.models import User
-# Register your models here.
+
+#users
+from .models import Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):

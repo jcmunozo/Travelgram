@@ -1,14 +1,12 @@
+"""Posts Views"""
 #django
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
 
-#forms
-from posts.forms import PostForm
-
-#models
-from posts.models import Post
-# Create your views here.
+#posts
+from .forms import PostForm
+from .models import Post
 
 class PostsFeedView(LoginRequiredMixin, ListView):
     """Return all published posts"""
