@@ -7,7 +7,31 @@
 {% block container %}
 <form action="{% url 'users:signup' %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <p class="alert alert-danger">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+            {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+    {% endfor %}
     <button class="btn btn-primary btn-block" type="submit">Register</button>
 </form>
+
+<div class="mt-4 text-center">
+  <small>Already have an account? <a href="{% url 'users:login' %}" class="text-primary">Login here</a></small>
+</div>
 {% endblock %}
