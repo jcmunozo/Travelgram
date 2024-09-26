@@ -11,9 +11,9 @@ html, body {
     border-radius: 1px;
 }
 
-#main-navbar {
-    background: #fff;
-    border-bottom: 1px solid rgba(0,0,0,.0975);
+#navbar {
+  background: #e3f2fd;
+  border-bottom: 1px solid rgba(0,0,0,.0975);
 }
 
 .post-container {
