@@ -13,6 +13,7 @@ html, body {
 
 .navbar {
   background: #e3f2fd;
+  display: flex;
 }
 
 .post-container {
