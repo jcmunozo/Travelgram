@@ -15,6 +15,7 @@ html, body {
   background: #e3f2fd;
   display: flex;
   align-items: center;
+  justify-content:center;
 }
 
 .post-container {
