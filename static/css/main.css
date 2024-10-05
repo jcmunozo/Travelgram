@@ -15,6 +15,7 @@ html, body {
   background: #e3f2fd;
   margin-top:20px;
   display: flex;
+  margin-top: 20px;
   margin-bottom: 20px;
   align-items: center;
   flex-direction: row;
