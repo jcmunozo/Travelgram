@@ -14,8 +14,6 @@ html, body {
   background: #e3f2fd;
   border:2px solif red;
   display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
   align-items: center;
   flex-direction: row;
   justify-content:center;
