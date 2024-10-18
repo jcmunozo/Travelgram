@@ -15,7 +15,6 @@ html, body {
   border:2px solif red;
   display: flex;
   align-items: center;
-  flex-direction: row;
   justify-content:center;
 }
 
