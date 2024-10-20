@@ -13,7 +13,6 @@ html, body {
 .navbar {
   background: #e3f2fd;
   border:2px solif red;
-  display: flex;
   align-items: center;
   justify-content:center;
 }
