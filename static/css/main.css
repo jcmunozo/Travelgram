@@ -12,7 +12,6 @@ html, body {
 
 .navbar {
   display:flex;
-  justify-content:center;
   background: #e3f2fd;
   border:2px solif red;
 }
