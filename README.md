@@ -1,4 +1,4 @@
-Travelgram 2026
+Travelgram
 ==========
 
 Platzi´s project, that use Django to build a copy of instagram called travelgram.<br>
