@@ -1,8 +1,7 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block head_content %}
-<title>@{{ request.user.username }} | update profile</title>
+<title>Edit post</title>
 {% endblock %}
 
 {% block container %}
@@ -11,8 +10,9 @@
 </div>
 <div class="container">
     <div class="row justify-content-md-center">
-        <div class="col-6 p-4 mb-3" id="profile-box">
-            {% include "users/_profile_form.html" %}
+        <div class="col-6 pt-3 pb-3" id="profile-box">
+            <h4 class="mb-4">Edit your post</h4>
+            {% include "posts/_edit_form.html" %}
         </div>
     </div>
 </div>

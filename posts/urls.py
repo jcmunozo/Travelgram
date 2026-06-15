@@ -17,8 +17,8 @@ urlpatterns = [
         name='create'
     ),
     path(
-        route='post/<int:pk>/',
-        view=views.PostDetailView.as_view(),
-        name='detail'
+        route='post/<int:pk>/edit/',
+        view=views.UpdatePostView.as_view(),
+        name='update'
     ),
 ]

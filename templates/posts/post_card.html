@@ -30,35 +30,4 @@
     </p>
 </div>
 
-<!-- Post modal -->
-<div class="modal fade post-modal" id="postModal{{ post.pk }}" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <button type="button" class="close post-modal-close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <img class="post-modal-photo" src="{{ post.photo.url }}" alt="{{ post.title }}">
-            <div class="post-modal-body">
-                <div class="media mb-3">
-                    <a href="{% url 'users:detail' post.user.username %}">
-                        <img
-                            src="{% if post.profile.picture %}{{ post.profile.picture.url }}{% else %}{% static 'img/default-profile.svg' %}{% endif %}"
-                            alt="{{ post.user.get_full_name }}"
-                            class="mr-3 rounded-circle" width="44" height="44">
-                    </a>
-                    <div class="media-body">
-                        <p class="mb-0 font-weight-bold">{{ post.user.get_full_name|default:post.user.username }}</p>
-                        <small class="text-muted">@{{ post.user.username }}</small>
-                    </div>
-                </div>
-                <h4 class="post-modal-title">{{ post.title }}</h4>
-                <div class="post-meta px-0">
-                    <span class="post-like"><i class="fa-solid fa-heart"></i></span>
-                    <span class="post-likes-count ml-2">{{ post.likes }}</span> likes
-                </div>
-                <small class="text-muted d-block mt-1">{{ post.created|date:"M j, Y" }}</small>
-                <a href="{% url 'posts:detail' post.pk %}" class="btn btn-primary btn-sm mt-3">Open full post</a>
-            </div>
-        </div>
-    </div>
-</div>
+{% include "posts/post_modal.html" %}

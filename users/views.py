@@ -6,6 +6,9 @@ from django.views.generic import DetailView, FormView, UpdateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User
 
+#travelgram
+from travelgram.mixins import AjaxableFormMixin
+
 #users
 from .forms import SignupForm
 from .models import Profile
@@ -40,9 +43,10 @@ class SignupView(FormView):
         form.save()
         return super().form_valid(form)
 
-class UpdateProfileView(LoginRequiredMixin, UpdateView):
+class UpdateProfileView(AjaxableFormMixin, LoginRequiredMixin, UpdateView):
     """Update profile view"""
     template_name = 'users/update_profile.html'
+    ajax_partial = 'users/_profile_form.html'
     model = Profile
     fields = ['website', 'biography', 'phone_number', 'picture']
 

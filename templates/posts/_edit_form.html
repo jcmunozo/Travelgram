@@ -1,0 +1,39 @@
+{% load static %}
+<div class="js-modal-form-wrap">
+    <form class="js-modal-form" action="{% url 'posts:update' post.pk %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next|default:request.get_full_path }}">
+
+        {# title field #}
+        <div class="form-group">
+            <label>Title</label>
+            <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                value="{{ form.title.value|default:post.title }}"
+                class="form-control js-emoji-input {% if form.title.errors %}is-invalid{% endif %}"
+            >
+            <div class="invalid-feedback">
+                {% for error in form.title.errors %}{{ error }}{% endfor %}
+            </div>
+        </div>
+
+        {# photo field #}
+        <div class="form-group">
+            <label class="d-block">Current photo</label>
+            <img class="img-fluid rounded mb-2" src="{{ post.photo.url }}" alt="{{ post.title }}">
+            <label>Choose a new photo (optional)</label>
+            <input
+                type="file"
+                name="photo"
+                class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
+            >
+            <div class="invalid-feedback">
+                {% for error in form.photo.errors %}{{ error }}{% endfor %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-4">Save changes</button>
+    </form>
+</div>

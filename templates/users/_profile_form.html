@@ -1,0 +1,68 @@
+{% load static %}
+<div class="js-modal-form-wrap">
+    <form class="js-modal-form" action="{% url 'users:update_profile' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="media">
+            {% if request.user.profile.picture %}
+                <img src="{{ request.user.profile.picture.url }}" class="rounded-circle" height="50" width="50">
+            {% else %}
+                <img src="{% static 'img/default-profile.svg' %}" class="rounded-circle" height="50" width="50">
+            {% endif %}
+            <div class="media-body">
+                <h5 class="ml-4">@{{ request.user.username }} | {{ request.user.get_full_name }}</h5>
+                <p class="ml-4">
+                    <input type="file" name="picture">
+                </p>
+            </div>
+        </div>
+
+        {% for error in form.picture.errors %}
+        <div class="alert alert-danger">
+            <b>Picture:</b> {{ error }}
+        </div>
+        {% endfor %}
+
+        <hr>
+
+        {# website field #}
+        <div class="form-group">
+            <label>Website</label>
+            <input
+                type="text"
+                class="form-control {% if form.website.errors %}is-invalid{% endif %}"
+                name="website"
+                placeholder="Website"
+                value="{% if form.errors %}{{ form.website.value|default:'' }}{% else %}{{ request.user.profile.website }}{% endif %}">
+            <div class="invalid-feedback">
+                {% for error in form.website.errors %}{{ error }}{% endfor %}
+            </div>
+        </div>
+
+        {# biography field #}
+        <div class="form-group">
+            <label>Biography</label>
+            <textarea
+                class="form-control {% if form.biography.errors %}is-invalid{% endif %}"
+                name="biography">{% if form.errors %}{{ form.biography.value|default:'' }}{% else %}{{ request.user.profile.biography }}{% endif %}</textarea>
+            <div class="invalid-feedback">
+                {% for error in form.biography.errors %}{{ error }}{% endfor %}
+            </div>
+        </div>
+
+        {# phone_number field #}
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input
+                type="text"
+                class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}"
+                name="phone_number"
+                placeholder="Phone Number"
+                value="{% if form.errors %}{{ form.phone_number.value|default:'' }}{% else %}{{ request.user.profile.phone_number }}{% endif %}">
+            <div class="invalid-feedback">
+                {% for error in form.phone_number.errors %}{{ error }}{% endfor %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-4">Update info</button>
+    </form>
+</div>

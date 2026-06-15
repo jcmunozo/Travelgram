@@ -17,11 +17,11 @@
 
                 {# website fiel #}
                 <div class="form-group">
-                    <input 
+                    <input
                         type="text"
                         name="title"
                         placeholder="Title"
-                        class="form-control {%if form.title.errors%}is-invalid{%endif%}"
+                        class="form-control js-emoji-input {%if form.title.errors%}is-invalid{%endif%}"
                     >
                     <div class="invalid-feedback">
                         {% for error in form.title.errors %}{{error}}{% endfor %}

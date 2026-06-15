@@ -112,13 +112,35 @@ h1, h2, h3, h4, h5 {
   color: var(--text) !important;
   letter-spacing: -0.02em;
 }
-.navbar-brand img { filter: drop-shadow(0 2px 8px rgba(243, 168, 189, 0.45)); }
-.navbar-brand .brand-word {
-  background: var(--grad-warm);
+/* Reusable gradient wordmark (navbar + auth screens) */
+.brand-word {
+  display: inline-block;
+  font-family: "Dancing Script", var(--font-display), cursive;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  /* room so the script descenders (g) keep their gradient and aren't clipped */
+  padding-bottom: 0.22em;
+  /* dawn-to-dusk sweep: lavender → rose → peach */
+  background: linear-gradient(100deg, #c5b3e6 0%, #f3a8bd 48%, #f7c79b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(243, 168, 189, 0.32));
+  transition: filter .25s ease, transform .25s ease;
 }
+.navbar-brand .brand-word { font-size: 2.5rem; }
+.navbar-brand:hover .brand-word {
+  filter: drop-shadow(0 3px 20px rgba(243, 168, 189, 0.55));
+  transform: translateY(-1px);
+}
+
+/* Auth screens (login / signup) — wordmark as the hero logo */
+.auth-brand {
+  text-align: center;
+  margin: 0 0 1.6rem;
+}
+.auth-brand .brand-word { font-size: 4rem; }
 
 .navbar-nav { align-items: center; gap: .25rem; }
 
@@ -523,7 +545,7 @@ hr { border-color: var(--border-soft); }
 .post-modal-title { font-family: var(--font-display); color: var(--text); margin: .25rem 0 .5rem; }
 
 /* feed — keep the first post clear of the fixed navbar */
-.feed { padding-top: 2.5rem; }
+.feed { padding-top: 1rem; }
 
 /* ----------------------------------------------------------------
    Entrance animation
@@ -550,5 +572,65 @@ hr { border-color: var(--border-soft); }
 @media (max-width: 600px) {
   .post-container { border-radius: 22px; }
   #profile-box { padding: 1.4rem !important; margin-top: 1rem; }
-  .navbar-brand .brand-word { display: none; }
+  .navbar-brand .brand-word { font-size: 1.7rem; }
+}
+
+/* ----------------------------------------------------------------
+   Emoji picker (emoji-picker-element)
+   ---------------------------------------------------------------- */
+.emoji-field { position: relative; }
+.emoji-field > .form-control { padding-right: 3.6rem; }
+.emoji-toggle {
+  position: absolute;
+  top: calc((1.5em + 1.4rem + 2px) / 2); /* vertical centre of a .form-control */
+  right: .5rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: .15rem;
+  padding: .2rem .45rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-hi);
+  color: var(--text);
+  line-height: 1;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.emoji-toggle:hover,
+.emoji-toggle:focus {
+  background: var(--surface-2);
+  border-color: var(--rose);
+  outline: none;
+}
+.emoji-toggle__face { font-size: 1.05rem; }
+.emoji-toggle__caret { font-size: .65rem; color: var(--muted); }
+.emoji-popover {
+  display: none;
+  position: absolute;
+  z-index: 1080; /* above the Bootstrap modal (1050) */
+  top: calc(100% + 6px);
+  right: 0;
+}
+.emoji-popover.is-open { display: block; }
+.emoji-popover emoji-picker {
+  width: 300px;
+  height: 320px;
+  --num-columns: 8;
+  --emoji-size: 1.15rem;
+  --border-radius: 14px;
+  --border-color: var(--border);
+  /* dark surfaces to match the "Warm Dusk" theme */
+  --background: var(--surface);
+  --input-border-color: var(--border-soft);
+  --input-font-color: var(--text);
+  --input-placeholder-color: var(--muted);
+  --input-background: var(--bg-0);
+  --button-active-background: var(--surface-hi);
+  --button-hover-background: var(--surface-2);
+  --indicator-color: var(--rose);
+  --category-font-color: var(--text-soft);
+  --outline-color: var(--rose);
+  box-shadow: var(--shadow-md);
+  border-radius: 14px;
 }
