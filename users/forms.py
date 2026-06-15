@@ -69,11 +69,11 @@ class SignupForm(forms.Form):
     def clean(self):
         """Verify password confirmation match"""
         data = super().clean()
-        password = self.cleaned_data['password']
-        password_confirmation = self.cleaned_data['password_confirmation']
+        password = data.get('password')
+        password_confirmation = data.get('password_confirmation')
 
-        if password != password_confirmation:
-            raise forms.ValidationError('Password do not match')
+        if password and password_confirmation and password != password_confirmation:
+            raise forms.ValidationError('Passwords do not match')
         return data
     
     def save(self):
@@ -84,3 +84,4 @@ class SignupForm(forms.Form):
         user = User.objects.create_user(**data)
         profile = Profile(user=user)
         profile.save()
+        return user

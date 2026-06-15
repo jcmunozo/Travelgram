@@ -13,7 +13,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display_links = ('pk', 'user')
     list_editable = ('title', 'photo')
     search_fields = (
-        'user__username'
+        'user__username',
         'title',
     )
     list_filter = (

@@ -13,7 +13,7 @@ class PostsFeedView(LoginRequiredMixin, ListView):
     template_name = 'posts/feed.html'
     model = Post
     ordering = ('-created',)
-    paginate_by = 30
+    paginate_by = 2  # posts per page — raise for production (e.g. 9–12)
     context_object_name = 'posts'
 
 class PostDetailView(LoginRequiredMixin, DetailView):
@@ -27,6 +27,12 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     template_name = 'posts/new.html'
     form_class = PostForm
     success_url  = reverse_lazy('posts:feed')
+
+    def form_valid(self, form):
+        """Set the post author from the logged in user"""
+        form.instance.user = self.request.user
+        form.instance.profile = self.request.user.profile
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         """Add user and profile to context"""

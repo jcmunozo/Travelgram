@@ -13,4 +13,6 @@ class PostForm(forms.ModelForm):
         """Form settings"""
 
         model = Post
-        fields = ('user', 'profile', 'title','photo')
+        # user and profile are set on the server from request.user, never
+        # trusted from the submitted form.
+        fields = ('title', 'photo')

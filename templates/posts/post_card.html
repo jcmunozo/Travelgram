@@ -1,26 +1,64 @@
-<div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
-    <div class="media pt-3 pl-3 pb-1">
+{% load static %}
+<div class="post-container mt-4">
+    <div class="media">
         <a href="{% url 'users:detail' post.user.username %}">
-            <img 
-                src="{{ post.profile.picture.url }}" 
+            <img
+                src="{% if post.profile.picture %}{{ post.profile.picture.url }}{% else %}{% static 'img/default-profile.svg' %}{% endif %}"
                 alt="{{ post.user.get_full_name }}"
                 class="mr-3 rounded-circle"
-                height="35"
-                width="35"
             >
         </a>
         <div class="media-body">
-            <p style="margin-top: 5px;">{{ post.user.get_full_name }}</p>
+            <p>{{ post.user.get_full_name|default:post.user.username }}</p>
+            <small class="text-muted">@{{ post.user.username }}</small>
         </div>
     </div>
 
-    <img style="width: 100%;" src="{{ post.photo.url }}" alt="{{ post.title }}">
-    <p class="mt-1 ml-2">
-        <a href="" style="color: #000; font-size: 20px; text-decoration:none;">
+    <a href="#" data-toggle="modal" data-target="#postModal{{ post.pk }}" aria-label="Open post">
+        <img class="post-photo" src="{{ post.photo.url }}" alt="{{ post.title }}">
+    </a>
+
+    <div class="post-meta">
+        <a href="" class="post-like" aria-label="Like">
             <i class="fa-solid fa-heart"></i>
-      </a> {{ post.likes }} likes
+        </a>
+        <span class="post-likes-count ml-2">{{ post.likes }}</span> likes
+    </div>
+    <p class="post-caption">
+        <span class="title">{{ post.title }}</span>
+        <small class="d-block mt-1"><time>{{ post.created|date:"M j, Y" }}</time></small>
     </p>
-    <p class="ml-2 mt-0 mb-2">
-        <b>{{ post.title }}</b> - <small>{{ post.created }}</small>
-    </p>
+</div>
+
+<!-- Post modal -->
+<div class="modal fade post-modal" id="postModal{{ post.pk }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <button type="button" class="close post-modal-close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <img class="post-modal-photo" src="{{ post.photo.url }}" alt="{{ post.title }}">
+            <div class="post-modal-body">
+                <div class="media mb-3">
+                    <a href="{% url 'users:detail' post.user.username %}">
+                        <img
+                            src="{% if post.profile.picture %}{{ post.profile.picture.url }}{% else %}{% static 'img/default-profile.svg' %}{% endif %}"
+                            alt="{{ post.user.get_full_name }}"
+                            class="mr-3 rounded-circle" width="44" height="44">
+                    </a>
+                    <div class="media-body">
+                        <p class="mb-0 font-weight-bold">{{ post.user.get_full_name|default:post.user.username }}</p>
+                        <small class="text-muted">@{{ post.user.username }}</small>
+                    </div>
+                </div>
+                <h4 class="post-modal-title">{{ post.title }}</h4>
+                <div class="post-meta px-0">
+                    <span class="post-like"><i class="fa-solid fa-heart"></i></span>
+                    <span class="post-likes-count ml-2">{{ post.likes }}</span> likes
+                </div>
+                <small class="text-muted d-block mt-1">{{ post.created|date:"M j, Y" }}</small>
+                <a href="{% url 'posts:detail' post.pk %}" class="btn btn-primary btn-sm mt-3">Open full post</a>
+            </div>
+        </div>
+    </div>
 </div>

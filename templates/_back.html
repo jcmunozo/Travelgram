@@ -1,0 +1,7 @@
+{# Reusable "go back" button: returns to the previous page, falling back to the feed. #}
+<a href="{% url 'posts:feed' %}"
+   onclick="if(window.history.length>1){window.history.back();return false;}"
+   class="btn-back" aria-label="Go back">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back</span>
+</a>

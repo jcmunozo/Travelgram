@@ -5,12 +5,16 @@
 {% endblock %}
 
 {% block container %}
-<div class="contaier">
-    <div class="row">
-        {% for post in posts %}
-            {% include "posts/post_card.html" %}
-        {% endfor %}
-    </div>
+<div class="container feed">
+    {% for post in posts %}
+        {% include "posts/post_card.html" %}
+    {% empty %}
+        <div class="feed-empty">
+            <h3>Nothing here yet</h3>
+            <p>Be the first to share a journey.</p>
+            <a href="{% url 'posts:create' %}" class="btn btn-primary mt-2">Post a photo</a>
+        </div>
+    {% endfor %}
 </div>
 
 {% include "pagination.html" %}

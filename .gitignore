@@ -17,3 +17,6 @@ myenv
 # images
 *.png
 *.jpg
+
+# Claude
+CLAUDE.md

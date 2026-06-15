@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block container %}
+<div class="container page-actions">
+    {% include "_back.html" %}
+</div>
 <div class="container">
-    <div class="row">
-        {% include "posts/post_card.html"%}
-    </div>
+    {% include "posts/post_card.html" %}
 </div>
 {% endblock %}
