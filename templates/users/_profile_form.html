@@ -42,7 +42,7 @@
         <div class="form-group">
             <label>Biography</label>
             <textarea
-                class="form-control {% if form.biography.errors %}is-invalid{% endif %}"
+                class="form-control js-emoji-input {% if form.biography.errors %}is-invalid{% endif %}"
                 name="biography">{% if form.errors %}{{ form.biography.value|default:'' }}{% else %}{{ request.user.profile.biography }}{% endif %}</textarea>
             <div class="invalid-feedback">
                 {% for error in form.biography.errors %}{{ error }}{% endfor %}
